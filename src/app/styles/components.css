@@ -5,36 +5,45 @@
   .btn {
     @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
   }
-  
+
   .btn-primary {
     @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
   }
-  
+
   .btn-secondary {
     @apply bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500 dark:bg-gray-600 dark:text-white dark:hover:bg-gray-700;
   }
-  
+
   .btn-danger {
     @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
   }
-  
+
   .card {
     @apply bg-white rounded-lg shadow-md p-6 dark:bg-gray-800;
   }
-  
+
   .card-header {
     @apply border-b border-gray-200 pb-4 mb-4 dark:border-gray-700;
   }
-  
+
   .input {
     @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white;
   }
-  
+
   .form-group {
     @apply mb-4;
   }
-  
+
   .form-label {
     @apply block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300;
+  }
+
+  .layout {
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--foreground);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

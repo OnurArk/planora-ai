@@ -2,7 +2,7 @@ import { HeroSection, GradientExamples, GettingStarted, FeatureCards } from ".";
 
 export default function HomeLayout() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 center">
+    <div className="layout">
       <div className="p-8">
         <HeroSection />
         <GradientExamples />
