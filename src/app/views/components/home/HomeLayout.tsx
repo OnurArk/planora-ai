@@ -2,7 +2,7 @@ import { HeroSection, GradientExamples, GettingStarted, FeatureCards } from ".";
 
 export default function HomeLayout() {
   return (
-    <div className="layout flex justify-center items-center">
+    <div className="page-wrap flex items-center justify-center">
       <div className="p-8">
         <HeroSection />
         <GradientExamples />
