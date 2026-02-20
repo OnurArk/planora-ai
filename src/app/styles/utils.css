@@ -36,7 +36,90 @@
     border-radius: 3px;
   }
 
+  /* Animasyonlu Gradient Text'ler */
   .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 via-cyan-300 to-purple-600 bg-clip-text text-transparent;
+    background: linear-gradient(270deg, #2563eb, #9333ea, #ec4899, #2563eb);
+    background-size: 200% 200%;
+    animation: gradientFlow 3s ease infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-text-fire {
+    background: linear-gradient(270deg, #ef4444, #f97316, #facc15, #ef4444);
+    background-size: 200% 200%;
+    animation: gradientFlow 4s ease infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-text-ocean {
+    background: linear-gradient(270deg, #06b6d4, #3b82f6, #1d4ed8, #06b6d4);
+    background-size: 200% 200%;
+    animation: gradientFlow 5s ease infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-text-sunset {
+    background: linear-gradient(
+      270deg,
+      #ec4899,
+      #fb923c,
+      #facc15,
+      #f59e0b,
+      #ec4899
+    );
+    background-size: 300% 300%;
+    animation: gradientFlow 6s ease infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-text-green {
+    background: linear-gradient(270deg, #22c55e, #10b981, #059669, #22c55e);
+    background-size: 200% 200%;
+    animation: gradientFlow 3.5s ease infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  /* Hızlı Rainbow animasyonu */
+  .gradient-text-rainbow {
+    background: linear-gradient(
+      270deg,
+      #ef4444,
+      #f97316,
+      #facc15,
+      #22c55e,
+      #06b6d4,
+      #3b82f6,
+      #8b5cf6,
+      #ec4899,
+      #ef4444
+    );
+    background-size: 800% 800%;
+    animation: gradientFlow 8s linear infinite;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Keyframe animasyonu @layer dışında */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
