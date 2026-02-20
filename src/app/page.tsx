@@ -1,18 +1,5 @@
-import {
-  PageLayout,
-  HeroSection,
-  GradientExamples,
-  GettingStarted,
-  FeatureCards,
-} from "./views/components/home";
+import HomeLayout from "./views/components/home/PageLayout";
 
 export default function HomePage() {
-  return (
-    <PageLayout>
-      <HeroSection />
-      <GradientExamples />
-      <GettingStarted />
-      <FeatureCards />
-    </PageLayout>
-  );
+  return <HomeLayout />;
 }
