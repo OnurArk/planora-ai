@@ -1,59 +1,42 @@
-/* Utility Classes */
+@import "tailwindcss";
 
-/* Spacing utilities */
-.container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-.section {
-  @apply py-12 md:py-16 lg:py-20;
-}
-
-/* Text utilities */
-.text-gradient {
-  @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
-}
-
-.text-balance {
-  text-wrap: balance;
-}
-
-/* Animation utilities */
-.fade-in {
-  @apply opacity-0 animate-in fade-in duration-500;
-}
-
-.slide-up {
-  @apply translate-y-4 animate-in slide-in-from-bottom duration-300;
-}
-
-.bounce-slow {
-  animation: bounce 2s infinite;
-}
-
-/* Loading utilities */
-.spinner {
-  @apply animate-spin rounded-full border-2 border-gray-300 border-t-blue-600;
-}
-
-.skeleton {
-  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
-}
-
-/* Layout utilities */
-.center {
-  @apply flex items-center justify-center;
-}
-
-.flex-between {
-  @apply flex items-center justify-between;
-}
-
-.grid-auto {
-  @apply grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3;
-}
-
-/* Focus utilities */
-.focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+/* Tailwind Utilities */
+@layer utilities {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .center {
+    @apply flex items-center justify-center;
+  }
+  
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+  
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgba(156, 163, 175, 0.5);
+    border-radius: 3px;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
 }
