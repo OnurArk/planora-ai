@@ -1,0 +1,41 @@
+/* Component Styles */
+
+/* Button components */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+/* Card components */
+.card {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-6;
+}
+
+.card-header {
+  @apply border-b border-gray-200 dark:border-gray-700 pb-4 mb-4;
+}
+
+/* Input components */
+.input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white;
+}
+
+/* Modal components */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4;
+}
