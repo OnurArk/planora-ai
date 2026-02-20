@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function AuthPage() {
-  return <div>AuthPage</div>;
+  return <div className="layout">AuthPage</div>;
 }
