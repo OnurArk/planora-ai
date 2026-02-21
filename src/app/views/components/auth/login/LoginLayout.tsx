@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function AuthLayout() {
+export default function LoginLayout() {
   return (
     <section className="w-full max-w-md">
       <div className="card">
