@@ -67,7 +67,7 @@
       rgba(216, 180, 254, 0.96) 334deg 346deg,
       rgba(255, 255, 255, 0) 356deg 360deg
     );
-    animation: glass-border-flow 2.8s linear infinite;
+    animation: glass-border-flow 5.6s linear infinite;
     pointer-events: none;
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
@@ -80,7 +80,7 @@
   }
 
   .glass-card::after {
-    animation-delay: -1.4s;
+    animation-delay: -2.8s;
     opacity: 0.9;
     background: conic-gradient(
       from var(--glass-border-angle),
