@@ -63,8 +63,7 @@
     background: conic-gradient(
       from var(--glass-border-angle),
       rgba(255, 255, 255, 0) 0deg 308deg,
-      rgba(216, 180, 254, 0.96) 308deg 334deg,
-      rgba(216, 180, 254, 0.96) 334deg 346deg,
+      rgba(216, 180, 254, 0.96) 308deg 346deg,
       rgba(255, 255, 255, 0) 356deg 360deg
     );
     animation: glass-border-flow 5.6s linear infinite;
@@ -85,8 +84,7 @@
     background: conic-gradient(
       from var(--glass-border-angle),
       rgba(255, 255, 255, 0) 0deg 308deg,
-      rgba(125, 211, 252, 0.96) 308deg 334deg,
-      rgba(125, 211, 252, 0.96) 334deg 346deg,
+      rgba(125, 211, 252, 0.96) 308deg 346deg,
       rgba(255, 255, 255, 0) 356deg 360deg
     );
   }
