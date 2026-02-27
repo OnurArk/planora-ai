@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@import "./components.css";
+@import "./utils.css";
+
+:root,
+:root[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #9333ea;
+  --secondary: #2e1065;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --border: #d1d5db;
+  --muted: #4b5563;
+  --on-primary: #ffffff;
+  --on-secondary: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-on-primary: var(--on-primary);
+  --color-on-secondary: var(--on-secondary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root[data-theme="dark"] {
+  --background: rgb(14, 16, 32);
+  --foreground: #ededed;
+  --primary: rgb(32, 170, 174);
+  --secondary: rgb(117, 56, 175);
+  --surface: #111827;
+  --surface-muted: #1f2937;
+  --border: rgb(80, 51, 133);
+  --muted: #cbd5e1;
+  --on-primary: #041f20;
+  --on-secondary: #f8fafc;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --background: rgb(14, 16, 32);
+    --foreground: #ededed;
+    --primary: rgb(32, 170, 174);
+    --secondary: rgb(117, 56, 175);
+    --surface: #111827;
+    --surface-muted: #1f2937;
+    --border: rgb(80, 51, 133);
+    --muted: #cbd5e1;
+    --on-primary: #041f20;
+    --on-secondary: #f8fafc;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}

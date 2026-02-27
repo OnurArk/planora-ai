@@ -1,0 +1,143 @@
+/* Tailwind Components */
+@layer components {
+  .app-shell {
+    @apply min-h-screen bg-background text-foreground;
+  }
+
+  .app-shell-inner {
+    @apply mx-auto flex w-full max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:px-8;
+  }
+
+  .app-sidebar {
+    @apply hidden w-64 shrink-0 rounded-xl border border-border bg-surface p-4 lg:block;
+  }
+
+  .page-wrap {
+    @apply w-full;
+  }
+
+  .auth-wrap {
+    @apply min-h-screen w-full flex items-center justify-center px-4 py-10;
+    background-image: url("/images/authBgDark.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  .btn {
+    @apply w-full max-w-[320px] px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 text-center cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-on-primary hover:brightness-110 focus:ring-primary;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-on-secondary hover:brightness-110 focus:ring-secondary;
+  }
+
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+
+  .card {
+    @apply bg-surface rounded-lg shadow-md p-6;
+  }
+
+  .glass-card {
+    @apply relative isolate w-full overflow-hidden rounded-3xl border border-transparent bg-white/10 p-8 text-white shadow-2xl backdrop-blur-sm;
+    background: rgba(77, 29, 149, 0.2);
+    box-shadow:
+      0 0 0 1px rgba(196, 181, 253, 0.26),
+      0 18px 60px rgba(76, 29, 149, 0.45);
+  }
+
+  .glass-card::before,
+  .glass-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(
+      from var(--glass-border-angle),
+      rgba(255, 255, 255, 0) 0deg 308deg,
+      rgba(216, 180, 254, 0.96) 308deg 346deg,
+      rgba(255, 255, 255, 0) 356deg 360deg
+    );
+    animation: glass-border-flow 5.6s linear infinite;
+    pointer-events: none;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  .glass-card::after {
+    animation-delay: -2.8s;
+    opacity: 0.9;
+    background: conic-gradient(
+      from var(--glass-border-angle),
+      rgba(255, 255, 255, 0) 0deg 308deg,
+      rgba(125, 211, 252, 0.96) 308deg 346deg,
+      rgba(255, 255, 255, 0) 356deg 360deg
+    );
+  }
+
+  .card-header {
+    @apply border-b border-border pb-4 mb-4;
+  }
+
+  .input {
+    @apply w-full max-w-[320px] px-3 py-1.5 border-2 border-border bg-surface text-foreground rounded-md focus:outline-none focus:border-primary;
+  }
+
+  .form-group {
+    @apply mb-4;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-muted mb-1;
+  }
+
+  .layout {
+    @apply min-h-screen flex justify-center items-center bg-background text-foreground;
+  }
+
+  .otp-input-group {
+    @apply mt-6 grid grid-cols-6 gap-2 sm:gap-3;
+  }
+
+  .otp-input {
+    @apply h-12 w-full rounded-xl border border-white/30 bg-white/5 text-center text-xl font-semibold text-white outline-none transition-all;
+  }
+
+  .otp-input:focus {
+    @apply border-violet-300 bg-white/10 ring-2 ring-violet-300/40;
+  }
+
+  .otp-input::selection {
+    background: rgba(196, 181, 253, 0.35);
+    color: #ffffff;
+  }
+}
+
+@property --glass-border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glass-border-flow {
+  from {
+    --glass-border-angle: 0deg;
+  }
+  to {
+    --glass-border-angle: 360deg;
+  }
+}
