@@ -1,5 +1,6 @@
 "use client";
 
+import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { Button } from "../../ui/Buttons";
@@ -22,13 +23,31 @@ type LoginResponse = {
   };
 };
 
+async function loginRequest(data: LoginFormValues): Promise<LoginResponse> {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000";
+
+  const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errorBody = (await response.json()) as { message?: string };
+    throw new Error(errorBody.message ?? "Login failed");
+  }
+
+  return (await response.json()) as LoginResponse;
+}
+
 export default function LoginLayout() {
   const router = useRouter();
   const {
     register,
     handleSubmit,
+    clearErrors,
     setError,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<LoginFormValues>({
     defaultValues: {
       email: "",
@@ -36,35 +55,25 @@ export default function LoginLayout() {
     },
   });
   const { login } = useAuthStore();
+  const loginMutation = useMutation({
+    mutationFn: loginRequest,
+  });
 
   const handleLogin: SubmitHandler<LoginFormValues> = async (data) => {
+    clearErrors("root");
+
     try {
-      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000";
-
-      const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const errorBody = (await response.json()) as { message?: string };
-        setError("root", {
-          message: errorBody.message ?? "Login failed",
-        });
-        return;
-      }
-
-      const result = (await response.json()) as LoginResponse;
+      const result = await loginMutation.mutateAsync(data);
 
       login({
         user: result.user,
         token: result.token,
       });
       router.replace("/");
-    } catch {
+    } catch (error) {
       setError("root", {
-        message: "Sunucuya baglanilamadi",
+        message:
+          error instanceof Error ? error.message : "Sunucuya baglanilamadi",
       });
     }
   };
@@ -123,9 +132,9 @@ export default function LoginLayout() {
           <Button
             type="submit"
             className="bg-linear-to-r from-purple-500 to-blue-500 text-white text-[18px]"
-            disabled={isSubmitting}
+            disabled={loginMutation.isPending}
           >
-            {isSubmitting ? "Logging in..." : "Log in"}
+            {loginMutation.isPending ? "Logging in..." : "Log in"}
           </Button>
         </form>
       </div>
