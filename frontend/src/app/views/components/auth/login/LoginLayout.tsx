@@ -24,7 +24,8 @@ type LoginResponse = {
 };
 
 async function loginRequest(data: LoginFormValues): Promise<LoginResponse> {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000";
+  const apiBaseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4000";
 
   const response = await fetch(`${apiBaseUrl}/api/auth/login`, {
     method: "POST",
@@ -73,7 +74,7 @@ export default function LoginLayout() {
     } catch (error) {
       setError("root", {
         message:
-          error instanceof Error ? error.message : "Sunucuya baglanilamadi",
+          error instanceof Error ? error.message : "Server connection failed",
       });
     }
   };
@@ -92,24 +93,23 @@ export default function LoginLayout() {
           className="flex flex-col gap-2 items-center"
           onSubmit={handleSubmit(handleLogin)}
         >
-          {errors.root?.message && (
-            <p className="w-full text-xs text-red-400">{errors.root.message}</p>
-          )}
           <Input
             type="email"
             placeholder="Email"
             className="bg-surface/50"
             autoComplete="email"
             {...register("email", {
-              required: "Email zorunlu",
+              required: "Email is required",
               pattern: {
                 value: /^\S+@\S+\.\S+$/,
-                message: "Gecerli bir email gir",
+                message: "Please enter a valid email",
               },
             })}
           />
           {errors.email && (
-            <p className="w-full text-xs text-red-400">{errors.email.message}</p>
+            <p className="w-full text-xs text-red-400">
+              {errors.email.message}
+            </p>
           )}
           <Input
             type="password"
@@ -117,10 +117,10 @@ export default function LoginLayout() {
             className="bg-surface/50"
             autoComplete="current-password"
             {...register("password", {
-              required: "Sifre zorunlu",
+              required: "Password is required",
               minLength: {
                 value: 6,
-                message: "Sifre en az 6 karakter olmali",
+                message: "Password must be at least 6 characters long",
               },
             })}
           />
@@ -128,6 +128,9 @@ export default function LoginLayout() {
             <p className="w-full text-xs text-red-400">
               {errors.password.message}
             </p>
+          )}
+          {errors.root?.message && (
+            <p className="w-full text-xs text-red-400">{errors.root.message}</p>
           )}
           <Button
             type="submit"
