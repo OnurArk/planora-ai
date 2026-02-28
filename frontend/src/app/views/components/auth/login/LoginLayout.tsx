@@ -18,7 +18,7 @@ export default function LoginLayout() {
 
   return (
     <section className="w-full max-w-md">
-      <div className="glass-card">
+      <div className="glass-card mb-20">
         <div className="flex items-center justify-center gap-2 mb-4">
           <Icon name="brand" size={24} />
           <h1 className="font-bold text-[24px] -ml-2">Planora AI</h1>
