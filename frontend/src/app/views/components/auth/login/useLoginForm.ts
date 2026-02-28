@@ -18,8 +18,8 @@ export function useLoginForm() {
     resetField,
     formState: { errors },
   } = useForm<LoginRequest>({
-    mode: "onBlur",
-    reValidateMode: "onBlur",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
     defaultValues: {
       email: "",
       password: "",
