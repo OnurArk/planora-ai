@@ -17,8 +17,11 @@ export default function LoginLayout() {
     handleSubmit,
     clearErrors,
     setError,
+    resetField,
     formState: { errors },
   } = useForm<LoginRequest>({
+    mode: "onBlur",
+    reValidateMode: "onBlur",
     defaultValues: {
       email: "",
       password: "",
@@ -29,7 +32,7 @@ export default function LoginLayout() {
     mutationFn: loginRequest,
   });
 
-  const handleLogin: SubmitHandler<LoginRequest> = async (data) => {
+  const onSubmit: SubmitHandler<LoginRequest> = async (data) => {
     clearErrors("root");
 
     try {
@@ -41,12 +44,16 @@ export default function LoginLayout() {
       });
       router.replace("/");
     } catch (error) {
+      resetField("password");
       setError("root", {
         message:
           error instanceof Error ? error.message : "Server connection failed",
       });
     }
   };
+
+  const formErrorMessage =
+    errors.email?.message || errors.password?.message || errors.root?.message;
 
   return (
     <section className="w-full max-w-md">
@@ -61,12 +68,14 @@ export default function LoginLayout() {
 
         <form
           className="flex flex-col gap-2 items-center"
-          onSubmit={handleSubmit(handleLogin)}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <Input
             type="email"
             placeholder="Email"
-            className="bg-surface/50"
+            className={`bg-surface/50 ${
+              errors.email ? "border-error! focus:border-error!" : ""
+            }`}
             autoComplete="email"
             {...register("email", {
               required: "Email is required",
@@ -76,16 +85,13 @@ export default function LoginLayout() {
               },
             })}
           />
-          {errors.email && (
-            <p className="w-full text-xs text-red-400">
-              {errors.email.message}
-            </p>
-          )}
 
           <Input
             type="password"
             placeholder="Password"
-            className="bg-surface/50"
+            className={`bg-surface/50 ${
+              errors.password ? "border-error! focus:border-error!" : ""
+            }`}
             autoComplete="current-password"
             {...register("password", {
               required: "Password is required",
@@ -95,15 +101,6 @@ export default function LoginLayout() {
               },
             })}
           />
-          {errors.password && (
-            <p className="w-full text-xs text-red-400">
-              {errors.password.message}
-            </p>
-          )}
-
-          {errors.root?.message && (
-            <p className="w-full text-xs text-red-400">{errors.root.message}</p>
-          )}
 
           <Button
             type="submit"
@@ -112,6 +109,11 @@ export default function LoginLayout() {
           >
             {loginMutation.isPending ? "Logging in..." : "Log in"}
           </Button>
+          {formErrorMessage && (
+            <p className="w-full text-xs text-error text-center">
+              {formErrorMessage}
+            </p>
+          )}
         </form>
       </div>
     </section>

@@ -14,6 +14,10 @@
   --muted: #4b5563;
   --on-primary: #ffffff;
   --on-secondary: #ffffff;
+  --success: #16a34a;
+  --info: #0ea5e9;
+  --warning: #f59e0b;
+  --error: #ef4444;
 }
 
 @theme inline {
@@ -27,6 +31,10 @@
   --color-muted: var(--muted);
   --color-on-primary: var(--on-primary);
   --color-on-secondary: var(--on-secondary);
+  --color-success: var(--success);
+  --color-info: var(--info);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -42,6 +50,10 @@
   --muted: #cbd5e1;
   --on-primary: #041f20;
   --on-secondary: #f8fafc;
+  --success: #22c55e;
+  --info: #38bdf8;
+  --warning: #fbbf24;
+  --error: #f87171;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,6 +68,10 @@
     --muted: #cbd5e1;
     --on-primary: #041f20;
     --on-secondary: #f8fafc;
+    --success: #22c55e;
+    --info: #38bdf8;
+    --warning: #fbbf24;
+    --error: #f87171;
   }
 }
 
