@@ -1,59 +1,20 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { useForm, type SubmitHandler } from "react-hook-form";
 import { Button } from "../../ui/Buttons";
 import { Icon } from "../../ui/Icons";
 import { Input } from "../../ui/Inputs";
 
-import { loginRequest, type LoginRequest } from "@/lib/api/modules";
-import { useAuthStore } from "@/stores/authStore";
+import { useLoginForm } from "./useLoginForm";
 
 export default function LoginLayout() {
-  const router = useRouter();
   const {
     register,
     handleSubmit,
-    clearErrors,
-    setError,
-    resetField,
-    formState: { errors },
-  } = useForm<LoginRequest>({
-    mode: "onBlur",
-    reValidateMode: "onBlur",
-    defaultValues: {
-      email: "",
-      password: "",
-    },
-  });
-  const { login } = useAuthStore();
-  const loginMutation = useMutation({
-    mutationFn: loginRequest,
-  });
-
-  const onSubmit: SubmitHandler<LoginRequest> = async (data) => {
-    clearErrors("root");
-
-    try {
-      const result = await loginMutation.mutateAsync(data);
-
-      login({
-        user: result.user,
-        token: result.token,
-      });
-      router.replace("/");
-    } catch (error) {
-      resetField("password");
-      setError("root", {
-        message:
-          error instanceof Error ? error.message : "Server connection failed",
-      });
-    }
-  };
-
-  const formErrorMessage =
-    errors.email?.message || errors.password?.message || errors.root?.message;
+    onSubmit,
+    errors,
+    isPending,
+    formErrorMessage,
+  } = useLoginForm();
 
   return (
     <section className="w-full max-w-md">
@@ -105,12 +66,12 @@ export default function LoginLayout() {
           <Button
             type="submit"
             className="bg-linear-to-r from-purple-500 to-blue-500 text-white text-[18px]"
-            disabled={loginMutation.isPending}
+            disabled={isPending}
           >
-            {loginMutation.isPending ? "Logging in..." : "Log in"}
+            {isPending ? "Logging in..." : "Log in"}
           </Button>
           {formErrorMessage && (
-            <p className="w-full text-xs text-error text-center">
+            <p className="w-full text-sm text-error text-center">
               {formErrorMessage}
             </p>
           )}
