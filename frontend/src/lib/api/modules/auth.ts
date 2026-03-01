@@ -5,7 +5,13 @@ export type LoginRequest = {
   password: string;
 };
 
-export type LoginResponse = {
+export type SignupRequest = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type AuthResponse = {
   token: string;
   user: {
     id: string;
@@ -14,8 +20,22 @@ export type LoginResponse = {
   };
 };
 
-export async function loginRequest(data: LoginRequest): Promise<LoginResponse> {
-  const result = await apiRequest<LoginResponse, LoginRequest>({
+export async function signupRequest(data: SignupRequest): Promise<AuthResponse> {
+  const result = await apiRequest<AuthResponse, SignupRequest>({
+    endpoint: "/api/auth/signup",
+    method: "POST",
+    body: data,
+  });
+
+  if (!result.ok) {
+    throw new Error(result.error);
+  }
+
+  return result.data;
+}
+
+export async function loginRequest(data: LoginRequest): Promise<AuthResponse> {
+  const result = await apiRequest<AuthResponse, LoginRequest>({
     endpoint: "/api/auth/login",
     method: "POST",
     body: data,
