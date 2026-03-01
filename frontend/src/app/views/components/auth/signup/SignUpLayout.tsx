@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { Button } from "../../ui/Buttons";
 import { Icon } from "../../ui/Icons";
 import { Input } from "../../ui/Inputs";
@@ -91,6 +93,12 @@ export default function SignUpLayout() {
               {formErrorMessage}
             </p>
           )}
+          <Link
+            href="/login"
+            className="mt-1 text-sm text-white/80 hover:text-white underline underline-offset-2 transition-colors"
+          >
+            Already have an account? Log in
+          </Link>
         </form>
       </div>
     </section>

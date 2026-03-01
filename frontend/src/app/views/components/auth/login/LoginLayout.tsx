@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { Button } from "../../ui/Buttons";
 import { Icon } from "../../ui/Icons";
 import { Input } from "../../ui/Inputs";
@@ -75,6 +77,12 @@ export default function LoginLayout() {
               {formErrorMessage}
             </p>
           )}
+          <Link
+            href="/signup"
+            className="mt-1 text-sm text-white/80 hover:text-white underline underline-offset-2 transition-colors"
+          >
+            Sign up
+          </Link>
         </form>
       </div>
     </section>
